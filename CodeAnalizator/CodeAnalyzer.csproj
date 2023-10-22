@@ -61,7 +61,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logocodedev.ico</ApplicationIcon>
+    <ApplicationIcon>logo_analizadorlexico.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>CodeAnalizator.Program</StartupObject>
@@ -80,16 +80,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeAnalyzer.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CodeAnalyzer.Designer.cs">
-      <DependentUpon>CodeAnalyzer.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManualDeUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualDeUsuario.Designer.cs">
+      <DependentUpon>ManualDeUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MoverComponente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CodeAnalyzer.resx">
-      <DependentUpon>CodeAnalyzer.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualDeUsuario.resx">
+      <DependentUpon>ManualDeUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logocodedev.ico" />
+    <Content Include="logo_analizadorlexico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

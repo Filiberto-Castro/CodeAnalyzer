@@ -1,6 +1,6 @@
 ﻿namespace CodeAnalizator
 {
-    partial class CodeAnalyzer
+    partial class MainForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeAnalyzer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label2 = new System.Windows.Forms.Label();
             this.cbLenguaje = new System.Windows.Forms.ComboBox();
             this.cbCodigoFuente = new System.Windows.Forms.RichTextBox();
@@ -37,7 +37,8 @@
             this.btnNuevo = new System.Windows.Forms.PictureBox();
             this.btnAnalizador = new System.Windows.Forms.PictureBox();
             this.btnExportarTexto = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.headerMainForm = new System.Windows.Forms.Panel();
+            this.btnAyuda = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -51,7 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNuevo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAnalizador)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExportarTexto)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.headerMainForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -155,16 +156,32 @@
             this.btnExportarTexto.TabStop = false;
             this.btnExportarTexto.Click += new System.EventHandler(this.btnExportarTexto_Click);
             // 
-            // panel1
+            // headerMainForm
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(185)))), ((int)(((byte)(190)))));
-            this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(696, 50);
-            this.panel1.TabIndex = 13;
+            this.headerMainForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(185)))), ((int)(((byte)(190)))));
+            this.headerMainForm.Controls.Add(this.btnAyuda);
+            this.headerMainForm.Controls.Add(this.btnClose);
+            this.headerMainForm.Controls.Add(this.label1);
+            this.headerMainForm.Controls.Add(this.pictureBox1);
+            this.headerMainForm.Location = new System.Drawing.Point(0, 0);
+            this.headerMainForm.Name = "headerMainForm";
+            this.headerMainForm.Size = new System.Drawing.Size(696, 50);
+            this.headerMainForm.TabIndex = 13;
+            // 
+            // btnAyuda
+            // 
+            this.btnAyuda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAyuda.Font = new System.Drawing.Font("Maiandra GD", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAyuda.ForeColor = System.Drawing.Color.White;
+            this.btnAyuda.Image = ((System.Drawing.Image)(resources.GetObject("btnAyuda.Image")));
+            this.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAyuda.Location = new System.Drawing.Point(312, 21);
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(70, 16);
+            this.btnAyuda.TabIndex = 20;
+            this.btnAyuda.Text = "Ayuda";
+            this.btnAyuda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAyuda.Click += new System.EventHandler(this.btnAyuda_Click);
             // 
             // btnClose
             // 
@@ -257,7 +274,7 @@
             this.panel3.TabIndex = 19;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
-            // CodeAnalyzer
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -266,7 +283,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnExportarTexto);
             this.Controls.Add(this.btnAnalizador);
             this.Controls.Add(this.btnNuevo);
@@ -277,17 +293,18 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.headerMainForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CodeAnalyzer";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CodeAnalyzer";
             ((System.ComponentModel.ISupportInitialize)(this.btnCargarArchivo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNuevo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAnalizador)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExportarTexto)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.headerMainForm.ResumeLayout(false);
+            this.headerMainForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -306,7 +323,7 @@
         private System.Windows.Forms.PictureBox btnNuevo;
         private System.Windows.Forms.PictureBox btnAnalizador;
         private System.Windows.Forms.PictureBox btnExportarTexto;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel headerMainForm;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox btnClose;
@@ -316,6 +333,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label btnAyuda;
     }
 }
 

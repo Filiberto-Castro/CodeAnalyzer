@@ -4,21 +4,20 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Drawing2D;
+using CodeAnalyzer;
 
 namespace CodeAnalizator
 {
-    public partial class CodeAnalyzer : Form
+    public partial class MainForm : Form
     {
-        private bool dragging = false;
-        private Point dragCursorPoint;
-        private Point dragFormPoint;
 
-        public CodeAnalyzer()
+        public MainForm()
         {
             InitializeComponent();
 
-            moverVentana();
-            
+            // logica para mover ventanas
+            MoverComponente moverComponente = new MoverComponente();
+            moverComponente.Attach(headerMainForm);
         }
 
         private void btnAnalizador_Click_1(object sender, EventArgs e)
@@ -26,6 +25,7 @@ namespace CodeAnalizator
             deshabilitarComponentes();
             String txtCodigoFuente = cbCodigoFuente.Text;
 
+            // Logica para ejecutar el analizador que corresponde (c++ o java)
             switch (cbLenguaje.SelectedIndex)
             {
                 case 0:
@@ -38,8 +38,12 @@ namespace CodeAnalizator
 
         }
 
+
+        // Metodo para el analizado lexico de C++
         public void analizadorLexicoCPP(String codigo)
         {
+
+            // Inicialización de patrones con sus respectivos tokens
             string includeDirectivePattern = @"#include\s+[<\""].*[>\""]";
             string keywordPattern = @"\b(alignas|alignof|and|and_eq|asm|auto|bitand|bitor|bool|break|case|catch|char|char8_t|char16_t|char32_t|class|compl|concept|const|consteval|constexpr|constinit|continue|co_await|co_return|co_yield|decltype|default|delete|do|dynamic_cast|else|enum|explicit|export|extern|false|for|friend|goto|if|inline|mutable|namespace|new|noexcept|not|not_eq|nullptr|operator|or|or_eq|private|protected|public|register|reinterpret_cast|requires|return|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|true|try|typedef|typeid|typename|union|using|virtual|void|volatile|wchar_t|while|xor|xor_eq)\b";
             string assignmentOperatorPattern = @"(=|\+=|-=|\*=|/=|%=|<<=|>>=|\&=|\|=|\^=)";
@@ -53,7 +57,7 @@ namespace CodeAnalizator
             string dataTypePattern = @"\b(int|char|bool|float|double|void|long|short|unsigned|signed)\b";
 
 
-
+            // Logica para identificar y devolver el tipo de patron
             string IdentificarTipoPatron(string patron)
             {
                 if (Regex.IsMatch(patron, includeDirectivePattern))
@@ -100,8 +104,11 @@ namespace CodeAnalizator
         }
 
 
+        // Metodo para el analizado lexico de Java
         public void analizadorLexicoJava(String codigo)
         {
+
+            // Inicialización de patrones con sus respectivos tokens
             string includeDirectivePattern = @"import\s+[\w.]+[.;]";
             string keywordPattern = @"\b(abstract|assert|break|case|catch|class|const|continue|default|do|else|enum|extends|final|finally|for|goto|if|implements|import|instanceof|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|transient|try|volatile|while)\b";
             string assignmentOperatorPattern = @"(=|\+=|-=|\*=|/=|%=|<<=|>>=|\&=|\|=|\^=)";
@@ -114,6 +121,7 @@ namespace CodeAnalizator
             string incrementDecrementOperatorPattern = @"(\+\+|--)";
             string dataTypePattern = @"\b(byte|short|int|long|float|double|boolean|char|void|String)\b";
 
+            // Logica para identificar y devolver el tipo de patron
             string IdentificarTipoPatron(string patron)
             {
                 if (Regex.IsMatch(patron, includeDirectivePattern))
@@ -239,35 +247,6 @@ namespace CodeAnalizator
             Application.Exit();
         }
 
-        private void moverVentana()
-        {
-            MouseDown += (s, e) =>
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    dragging = true;
-                    dragCursorPoint = Cursor.Position;
-                    dragFormPoint = Location;
-                }
-            };
-
-            MouseMove += (s, e) =>
-            {
-                if (dragging)
-                {
-                    Point newCursorPoint = Cursor.Position;
-                    Location = new Point(dragFormPoint.X + (newCursorPoint.X - dragCursorPoint.X),
-                                         dragFormPoint.Y + (newCursorPoint.Y - dragCursorPoint.Y));
-                }
-            };
-
-            MouseUp += (s, e) =>
-            {
-                if (e.Button == MouseButtons.Left)
-                    dragging = false;
-            };
-        }
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             Panel panel = (Panel)sender; // Convierte el sender en un Panel
@@ -312,6 +291,15 @@ namespace CodeAnalizator
                 }
                 e.Graphics.DrawPath(Pens.LightBlue, path);
             }
+        }
+
+        private void btnAyuda_Click(object sender, EventArgs e)
+        {
+            Hide();
+            // Instanciar y mostrar el formulario manual de usuario
+            ManualDeUsuario manual = new ManualDeUsuario();
+            manual.ShowDialog();
+            this.Show();
         }
     }
 }
